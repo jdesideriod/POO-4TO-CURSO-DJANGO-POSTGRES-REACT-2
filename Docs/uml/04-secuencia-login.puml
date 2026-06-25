@@ -1,0 +1,26 @@
+plantuml
+@startuml 04-secuencia-login
+title Secuencia — Login MVT
+
+actor Usuario
+participant "Navegador" as Browser
+participant "URL Dispatcher" as URLs
+participant "LoginView" as View
+participant "Auth Backend" as Auth
+participant "Template" as Template
+database "MySQL" as DB
+
+Usuario -> Browser: usuario y contraseña
+Browser -> URLs: POST /auth/login/
+URLs -> View: LoginView
+View -> Auth: authenticate(email, password)
+Auth -> DB: SELECT * FROM users
+DB --> Auth: row
+alt válido
+  Auth --> View: user
+  View --> Browser: Redirect /dashboard/
+else inválido
+  View -> Template: render con error
+  Template --> Browser: HTML error
+end
+@enduml

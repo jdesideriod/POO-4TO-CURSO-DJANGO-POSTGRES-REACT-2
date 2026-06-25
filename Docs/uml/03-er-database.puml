@@ -1,0 +1,26 @@
+plantuml
+@startuml 03-er-database
+title Modelo ER — MySQL
+
+entity "users" as users {
+  *id : BIGINT <<PK>>
+  *username : VARCHAR(150) <<UNIQUE>>
+  *email : VARCHAR(254) <<UNIQUE>>
+  *password : VARCHAR(128)
+  *is_active : BOOLEAN
+  *is_staff : BOOLEAN
+  *date_joined : DATETIME
+  *created_at : DATETIME
+}
+
+entity "notes" as notes {
+  *id : BIGINT <<PK>>
+  *title : VARCHAR(200)
+  *body : TEXT
+  *owner_id : BIGINT <<FK>>
+  *created_at : DATETIME
+  *updated_at : DATETIME
+}
+
+users ||--o{ notes : "1:N"
+@enduml

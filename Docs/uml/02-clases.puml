@@ -1,0 +1,32 @@
+plantuml
+@startuml 02-clases
+title Clases del dominio
+
+class User <<accounts>> {
+  - id: int
+  - username: str
+  - email: str
+  - password: str
+  - created_at: datetime
+}
+
+class Note <<core>> {
+  - id: int
+  - title: str
+  - body: text
+  - owner: FK -> User
+  - created_at: datetime
+  - updated_at: datetime
+}
+
+class CustomUserManager <<accounts>>
+class NoteForm <<core>>
+class DashboardView <<core>>
+class NoteCreateView <<core>>
+class NoteDeleteView <<core>>
+
+User "1" *-- "0..*" Note : owns
+CustomUserManager ..> User : crea
+DashboardView ..> Note
+NoteCreateView ..> NoteForm
+@enduml

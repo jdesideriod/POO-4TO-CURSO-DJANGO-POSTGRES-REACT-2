@@ -1,0 +1,26 @@
+plantuml
+@startuml 01-despliegue
+title Arquitectura Monolito MVT
+
+node "Navegador" as Browser {
+  component "HTML + Bootstrap" as HTML
+}
+
+node "Servidor Django" as Server {
+  component "URL Dispatcher" as URLs
+  component "Views (lógica)" as Views
+  component "Templates (HTML)" as Templates
+  component "Models + ORM" as Models
+}
+
+node "Base de datos" as DB {
+  database "MySQL" as MySQL
+}
+
+Browser --> Server : HTTP
+URLs --> Views : enruta
+Views --> Models : consulta
+Models --> MySQL : SQL
+Views --> Templates : renderiza
+Server --> Browser : HTML
+@enduml
