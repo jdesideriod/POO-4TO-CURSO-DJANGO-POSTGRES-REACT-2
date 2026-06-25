@@ -67,7 +67,8 @@ DATABASES = {
         "ENGINE": config("DB_ENGINE", default="django.db.backends.mysql"),
         "NAME": config("DB_NAME", default="ventas_db_local"),
         "USER": config("DB_USER", default="root"),
-        "PASSWORD": config("DB_PASSWORD", default="Ja011017"),
+        "PASSWORD": config("DB_PASSWORD", default=""),
+
         "HOST": config("DB_HOST", default="localhost"),
         "PORT": config("DB_PORT", default="3306"),
     }
